@@ -36,3 +36,5 @@ lerna-debug.log*
 
 # personalizados
 artefacts
+
+.env
