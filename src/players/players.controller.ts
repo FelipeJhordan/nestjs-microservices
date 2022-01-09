@@ -13,15 +13,14 @@ export class PlayersController {
   }
 
   @Get()
-  async getPlayers(): Promise<Player[]> {
+  async getPlayers(@Query('email') email: string): Promise<Player[] | Player> {
+    if (!!email) return await this.playersService.getPlayerByEmail(email);
     return await this.playersService.getPlayers();
-  }
-  async getPlayer(@Query('email') email: string): Promise<Player> {
-    return await this.playersService.getPlayerByEmail(email);
   }
 
   @Delete()
   async deletePlayer(@Query('email') email: string): Promise<void> {
-    this.playersService.deletePlayer(email);
+    console.log(email);
+    return await this.playersService.deletePlayer(email);
   }
 }
